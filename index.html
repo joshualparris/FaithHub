@@ -1,1 +1,424 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f6efe3"><title>FaithHub — Rule of Life Companion</title><style>:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#2b241e;background:#f6efe3;line-height:1.5}*{box-sizing:border-box}body{margin:0;min-width:320px;min-height:100vh;background:radial-gradient(circle at top left,#fff8e8,#f6efe3 38%,#eef7ee)}main{width:min(1120px,calc(100% - 32px));margin:0 auto;padding:28px 0}button,input,textarea,select{font:inherit}button{cursor:pointer}.hero{display:grid;grid-template-columns:1.4fr .9fr;gap:22px;align-items:end;margin-bottom:18px}.eyebrow{color:#8b5e25;font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;margin:0 0 10px}h1{font-size:clamp(2.25rem,6vw,5.3rem);line-height:.94;letter-spacing:-.075em;margin:0;max-width:850px}h2{font-size:clamp(1.35rem,3vw,2.2rem);line-height:1.08;letter-spacing:-.04em;margin:0 0 12px}h3{margin:0 0 12px;font-size:1.05rem}p{color:#62564c;margin:0 0 12px}.lead{font-size:1.06rem;max-width:720px;margin-top:16px}.card,.posture,.toolbar,footer{background:rgba(255,252,246,.9);border:1px solid rgba(96,76,49,.14);border-radius:28px;padding:22px;box-shadow:0 18px 55px rgba(90,70,44,.08)}.posture{background:#322619;color:#fff5de}.posture p,.posture small{color:rgba(255,245,222,.75)}.posture h2{color:#fff5de}.meter{height:10px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.16);margin:18px 0 12px}.meter span{display:block;height:100%;border-radius:999px;background:#ffe7ad}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;padding:12px}.tabs,.date-tools{display:flex;gap:8px;flex-wrap:wrap}button,input,select{border:1px solid rgba(96,76,49,.16);background:rgba(255,255,255,.8);color:#40362d;border-radius:16px;padding:10px 14px}button:hover{background:#fff3d9}button.active,button.primary{background:#3b2c1c;color:#fff7e8}.grid{display:grid;gap:18px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.wide{grid-column:1/-1}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.pill{background:#f4eadb;color:#6f4b23;border-radius:999px;padding:8px 12px;font-size:.9rem;white-space:nowrap}.scripture blockquote{margin:14px 0;color:#3e3228;font-size:1.2rem;line-height:1.7}.soft,.prayer{background:#eef7ee;border:1px solid rgba(54,97,61,.12);border-radius:18px;padding:14px;color:#334f35}.prayer{background:#f7f1e7;color:#55483c}.feature{background:linear-gradient(135deg,rgba(238,247,238,.92),rgba(255,252,246,.92))}.rhythm-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.rhythm{text-align:left;min-height:184px;background:rgba(255,255,255,.65);border-radius:22px;padding:16px}.rhythm.active{background:#fff0c7;border-color:#dfb96d}.icon{font-size:1.65rem;display:inline-block;margin-bottom:8px}.rhythm strong{display:block;margin-bottom:4px}.rhythm small{display:block;color:#8a8076;margin-bottom:10px}.rhythm p{font-size:.92rem}textarea{display:block;width:100%;min-height:116px;resize:vertical;border:1px solid rgba(96,76,49,.18);border-radius:18px;background:rgba(255,255,255,.85);color:#332a22;padding:14px;outline:none}textarea:focus,input:focus,select:focus{border-color:#c7903d;box-shadow:0 0 0 4px rgba(199,144,61,.14)}select{width:100%}.check{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;margin-top:10px;padding:14px;border-radius:18px}.check strong{display:block}.check small{display:block;color:#74695e;margin-top:2px}.dot{width:24px;height:24px;border:1px solid rgba(96,76,49,.28);border-radius:50%;display:grid;place-items:center;flex:none;color:#5b421d;font-weight:900}.check.active{background:#fff0c7;border-color:#dfb96d}.rest-list{display:grid;gap:10px;padding:0;margin:12px 0 0;list-style:none}.rest-list li{background:#f7f1e7;border-radius:16px;padding:12px 14px;color:#5d5146}.rest-list li:before{content:'+';color:#497749;font-weight:900;margin-right:10px}footer{display:flex;justify-content:space-between;gap:12px;color:#675c51;margin-top:24px;font-size:.92rem}@media(max-width:860px){main{width:min(100% - 20px,1120px);padding-top:18px}.hero,.two{grid-template-columns:1fr}.rhythm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.toolbar,.section-heading,footer{align-items:stretch;flex-direction:column}}@media(max-width:520px){.rhythm-grid{grid-template-columns:1fr}.card,.posture,.toolbar,footer{border-radius:22px;padding:16px}.toolbar{padding:10px}.tabs button,.date-tools button,input{width:100%}}</style></head><body><main><section class="hero"><div><p class="eyebrow">FaithHub / Rule of Life Companion</p><h1>Gentle formation, not spiritual scorekeeping.</h1><p class="lead">A quiet place to receive Scripture, pray through the day, reflect honestly, and notice where God’s grace is already at work.</p></div><aside class="posture"><p>Today’s posture</p><h2>Abide before you strive.</h2><div class="meter"><span id="meter"></span></div><small>This bar is not a grade. It just shows how much space you’ve made to notice God today.</small></aside></section><section class="toolbar"><div class="tabs" id="tabs"></div><div class="date-tools"><input type="date" id="date"><button id="todayBtn">Today</button><button id="resetBtn">Reset</button></div></section><div id="app"></div><footer><span>Saved locally in this browser.</span><span>No streaks. No guilt engine. Just daily return.</span></footer></main><script>const STORAGE='faithhub-rule-of-life-v1',todayKey=()=>new Date().toISOString().slice(0,10);const scriptures=[['Matthew 11:28–30','Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me…','Receive rest before you try to improve.'],['Galatians 5:22–23','The fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control.','Fruit grows by abiding, not forcing.'],['Psalm 23:1–3','The Lord is my shepherd, I lack nothing. He makes me lie down in green pastures… he refreshes my soul.','Let God shepherd your pace today.'],['Micah 6:8','To act justly and to love mercy and to walk humbly with your God.','Small faithfulness counts.'],['John 15:4–5','Remain in me, as I also remain in you… apart from me you can do nothing.','Start with connection, not effort.'],['Philippians 4:6–7','Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.','Bring the anxious thing into God’s presence.'],['Romans 12:2','Do not conform to the pattern of this world, but be transformed by the renewing of your mind.','Transformation is received slowly and honestly.']];const fruits=[['Love','Where could I move toward someone with costly kindness today?','Pause before reacting. Ask: what would love look like here?'],['Joy','Where did I notice goodness, beauty, or delight?','Name one small gift aloud and thank God for it.'],['Peace','What part of me feels hurried, defended, or unsafe?','Breathe slowly and unclench your jaw, shoulders, and hands.'],['Patience','Where am I being invited to slow down rather than control?','Choose one delay today as a place to practise trust.'],['Kindness','Who needs a gentle word or practical act of care?','Do one hidden act of kindness without announcing it.'],['Goodness','Where can I do the right thing even if no one notices?','Pick one small faithful action and do it simply.'],['Faithfulness','What is mine to carry today, and what is not?','Return to one commitment without harshness or drama.'],['Gentleness','Where do I need to lower the force of my words, tone, or expectations?','Speak one sentence softer than you feel like speaking.'],['Self-control','What desire needs wise boundaries rather than shame?','Create one small friction point between impulse and action.']];const rhythms=[['morning','☀️','Morning receiving','Start of day','Open hands. Ask for grace, not perfection.','Father, receive this day. Form Christ in me. Help me walk in love, truth, humility, and courage.'],['midday','🌬️','Midday reset','When scattered','One minute to return to your body and God’s presence.','Lord Jesus Christ, have mercy on me. I return to You. Show me the next faithful step.'],['evening','🌙','Evening examen','Before bed','Notice grace, fear, repentance, gratitude, and rest.','Holy Spirit, search me gently. Thank You for grace today. I give You what remains unfinished.'],['family','🏠','Family prayer','Dinner or bedtime','Short, warm prayer with the people in your home.','Jesus, bless our family. Help our home become a place of peace, kindness, honesty, and love.']];const familyPrompts=['Thank God for one good thing each person noticed today.','Pray one sentence of blessing over each child or family member.','Ask: where did we need help today? Then pray simply about it.','Read one short Psalm line and let everyone choose one word they liked.','Practise apology and repair: “I’m sorry for… Please forgive me.”','Sit quietly for 30 seconds and remember Jesus is near.'];const restIdeas=['No productivity goal for a set block of time.','Enjoy creation: walk, garden, sit outside, or watch the sky.','Shared meal without rushing.','A nap, quiet reading, or gentle play.','Put away one device for a chosen window.','Worship, church, prayer, or a slow Psalm.'];const tabs=[['today','Today'],['prayer','Prayer'],['reflection','Reflection'],['family','Family'],['sabbath','Sabbath']];let state=load(),date=todayKey(),tab='today';function blank(d=date){return{date:d,rhythms:{},reflection:{gratitude:'',repentance:'',fear:'',grace:'',fruit:'',body:'',prayer:''},sabbath:{planned:false,rested:false,notes:''},community:{church:false,checkedIn:false,served:false,notes:''}}}function load(){try{return JSON.parse(localStorage.getItem(STORAGE))||{entries:{[todayKey()]:blank(todayKey())}}}catch{return{entries:{[todayKey()]:blank(todayKey())}}}}function save(){localStorage.setItem(STORAGE,JSON.stringify(state))}function entry(){return state.entries[date]||(state.entries[date]=blank(date))}function esc(s=''){return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}function dayIndex(){return Math.abs(Math.floor(new Date(date+'T00:00:00').getTime()/86400000))}function setRef(k,v){entry().reflection[k]=v;save();render()}function setNested(section,k,v){entry()[section][k]=v;save();render()}function toggleRhythm(id){entry().rhythms[id]=!entry().rhythms[id];save();render()}function textarea(k,label,ph){return `<article class="card"><h3>${label}</h3><textarea data-ref="${k}" placeholder="${esc(ph)}">${esc(entry().reflection[k])}</textarea></article>`}function check(section,k,title,sub){const on=entry()[section][k];return `<button class="check ${on?'active':''}" data-check="${section}:${k}" type="button"><span class="dot">${on?'✓':''}</span><span><strong>${title}</strong><small>${sub}</small></span></button>`}function renderTabs(){document.getElementById('tabs').innerHTML=tabs.map(([id,label])=>`<button class="${tab===id?'active':''}" data-tab="${id}">${label}</button>`).join('')}function updateMeter(){const e=entry(),c=Object.values(e.rhythms).filter(Boolean).length,r=Object.values(e.reflection).filter(Boolean).length;document.getElementById('meter').style.width=Math.min(100,Math.round(((c+Math.min(r,3))/7)*100))+'%'}function render(){renderTabs();document.getElementById('date').value=date;updateMeter();const e=entry(),s=scriptures[dayIndex()%scriptures.length],f=fruits[dayIndex()%fruits.length],fp=familyPrompts[dayIndex()%familyPrompts.length];let html='';if(tab==='today')html=`<section class="grid two"><article class="card scripture"><p class="eyebrow">Daily Scripture</p><h2>${s[0]}</h2><blockquote>“${s[1]}”</blockquote><p class="soft">${s[2]}</p></article><article class="card"><p class="eyebrow">Fruit for today</p><h2>${f[0]}</h2><p>${f[1]}</p><p class="prayer"><b>Tiny practice:</b> ${f[2]}</p></article><article class="card wide"><div class="section-heading"><div><p class="eyebrow">Today’s rhythm</p><h2>Small faithful openings</h2></div><span class="pill">${Object.values(e.rhythms).filter(Boolean).length} of ${rhythms.length} touched today</span></div><div class="rhythm-grid">${rhythms.map(r=>`<button class="rhythm ${e.rhythms[r[0]]?'active':''}" data-rhythm="${r[0]}"><span class="icon">${r[1]}</span><strong>${r[2]}</strong><small>${r[3]}</small><p>${r[4]}</p></button>`).join('')}</div></article></section>`;if(tab==='prayer')html=`<section class="grid two">${rhythms.map(r=>`<article class="card"><span class="icon">${r[1]}</span><h2>${r[2]}</h2><p>${r[3]} — ${r[4]}</p><p class="prayer">${r[5]}</p><button class="${e.rhythms[r[0]]?'active':''}" data-rhythm="${r[0]}">${e.rhythms[r[0]]?'Received':'Mark gently'}</button></article>`).join('')}</section>`;if(tab==='reflection')html=`<section class="grid two"><article class="card wide"><p class="eyebrow">Evening examen</p><h2>Tell the truth without self-attack.</h2><p>These questions are for noticing, confession, gratitude, and receiving mercy. Leave anything blank.</p></article>${textarea('gratitude','What am I grateful for?','A gift, kindness, provision, moment of beauty, or small mercy…')}${textarea('repentance','Where do I need repentance or repair?','Not shame. Just truth, humility, and a next faithful step…')}${textarea('fear','Where did I act from fear today?','Control, avoidance, defensiveness, people-pleasing, hiding, rushing…')}${textarea('grace','Where did I notice grace?','A softening, help arriving, restraint, courage, comfort, forgiveness…')}<article class="card"><h3>What fruit is God growing?</h3><select data-ref="fruit"><option value="">Choose gently…</option>${fruits.map(x=>`<option ${e.reflection.fruit===x[0]?'selected':''}>${x[0]}</option>`).join('')}</select></article>${textarea('body','What is my body carrying?','Tight chest, heavy shoulders, tired eyes, clenched jaw, warmth, calm…')}<article class="card wide"><h3>Prayer to close the day</h3><textarea data-ref="prayer" placeholder="Lord, I give You… Thank You for… Help me tomorrow…">${esc(e.reflection.prayer)}</textarea></article></section>`;if(tab==='family')html=`<section class="grid two"><article class="card feature"><p class="eyebrow">Family prayer prompt</p><h2>${fp}</h2><p>Keep it short enough that the family can actually receive it. One honest sentence can be enough.</p></article><article class="card"><h2>Community rhythms</h2><p>Faith forms in ordinary belonging: worship, meals, serving, reconciliation, and being known.</p>${check('community','church','Church / gathered worship','A rhythm of receiving and belonging.')}${check('community','checkedIn','Checked in with someone','A text, call, prayer, meal, or honest conversation.')}${check('community','served','Served quietly','A small act of love without needing recognition.')}</article><article class="card wide"><h3>Notes on family, church, or community</h3><textarea data-nested="community:notes" placeholder="Who needs care? Where did we experience connection? Is there anyone to forgive, bless, or reach out to?">${esc(e.community.notes)}</textarea></article></section>`;if(tab==='sabbath')html=`<section class="grid two"><article class="card feature"><p class="eyebrow">Sabbath / rest</p><h2>Practise being loved without producing.</h2><p>Sabbath is not another productivity system. It is resistance against hurry, control, and the lie that you are only valuable when useful.</p>${check('sabbath','planned','I made room for rest','Even a small protected window counts.')}${check('sabbath','rested','I actually received some rest','Notice what was life-giving, not what was impressive.')}</article><article class="card"><h2>Rest ideas</h2><ul class="rest-list">${restIdeas.map(x=>`<li>${x}</li>`).join('')}</ul></article><article class="card wide"><h3>Rest notes</h3><textarea data-nested="sabbath:notes" placeholder="What helped me slow down? What made rest hard? What might need to change next Sabbath?">${esc(e.sabbath.notes)}</textarea></article></section>`;document.getElementById('app').innerHTML=html;bind()}function bind(){document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;render()});document.querySelectorAll('[data-rhythm]').forEach(b=>b.onclick=()=>toggleRhythm(b.dataset.rhythm));document.querySelectorAll('[data-ref]').forEach(el=>el.oninput=()=>setRef(el.dataset.ref,el.value));document.querySelectorAll('[data-check]').forEach(b=>b.onclick=()=>{const[s,k]=b.dataset.check.split(':');setNested(s,k,!entry()[s][k])});document.querySelectorAll('[data-nested]').forEach(el=>el.oninput=()=>{const[s,k]=el.dataset.nested.split(':');setNested(s,k,el.value)})}document.getElementById('date').onchange=e=>{date=e.target.value;render()};document.getElementById('todayBtn').onclick=()=>{date=todayKey();render()};document.getElementById('resetBtn').onclick=()=>{state.entries[date]=blank(date);save();render()};render();</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FaithHub — Rule of Life Companion</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #000000;
+      --muted: #333333;
+      --card: #ffffff;
+      --border: #000000;
+      --button-bg: #ffffff;
+      --button-fg: #000000;
+      --active-bg: #000000;
+      --active-fg: #ffffff;
+    }
+
+    body.dark {
+      --bg: #000000;
+      --fg: #ffffff;
+      --muted: #dddddd;
+      --card: #000000;
+      --border: #ffffff;
+      --button-bg: #000000;
+      --button-fg: #ffffff;
+      --active-bg: #ffffff;
+      --active-fg: #000000;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(1080px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      font-size: clamp(2.2rem, 7vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(1.45rem, 4vw, 2.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    p, small, textarea, select, input { color: var(--muted); }
+    body.dark p, body.dark small, body.dark textarea, body.dark select, body.dark input { color: var(--fg); }
+
+    .hero, .toolbar, .card, footer {
+      border: 2px solid var(--border);
+      background: var(--card);
+      color: var(--fg);
+      border-radius: 24px;
+      padding: 18px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.5fr 0.8fr;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg);
+      margin-bottom: 10px;
+    }
+
+    .lead { max-width: 680px; font-size: 1.05rem; }
+
+    .posture {
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+    }
+
+    .meter {
+      height: 10px;
+      border: 2px solid var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 14px 0 10px;
+    }
+
+    .meter span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--fg);
+      transition: width 0.25s ease;
+    }
+
+    body.dark .meter span { background: var(--fg); }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .tabs, .tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      border: 2px solid var(--border);
+      background: var(--button-bg);
+      color: var(--button-fg);
+      border-radius: 14px;
+      padding: 10px 13px;
+    }
+
+    button { cursor: pointer; }
+
+    button.active, button.primary {
+      background: var(--active-bg);
+      color: var(--active-fg);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    select { width: 100%; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .wide { grid-column: 1 / -1; }
+
+    blockquote {
+      margin: 16px 0;
+      font-size: 1.15rem;
+      line-height: 1.65;
+    }
+
+    .rhythm-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .rhythm {
+      text-align: left;
+      min-height: 160px;
+    }
+
+    .icon { font-size: 1.7rem; display: block; margin-bottom: 8px; }
+
+    .check {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      text-align: left;
+      align-items: flex-start;
+      margin-top: 8px;
+    }
+
+    .dot {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex: none;
+      font-weight: 900;
+    }
+
+    .rest-list {
+      display: grid;
+      gap: 8px;
+      padding-left: 20px;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 850px) {
+      .hero, .grid { grid-template-columns: 1fr; }
+      .rhythm-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .toolbar, footer { align-items: stretch; flex-direction: column; }
+    }
+
+    @media (max-width: 520px) {
+      main { width: min(100% - 18px, 1080px); padding-top: 16px; }
+      .rhythm-grid { grid-template-columns: 1fr; }
+      button, input { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">FaithHub / Rule of Life Companion</p>
+        <h1>Gentle formation, not spiritual scorekeeping.</h1>
+        <p class="lead">A quiet place to receive Scripture, pray through the day, reflect honestly, and notice where God’s grace is already at work.</p>
+      </div>
+      <aside class="posture">
+        <p class="eyebrow">Today’s posture</p>
+        <h2>Abide before you strive.</h2>
+        <div class="meter"><span id="meter"></span></div>
+        <small>This is not a grade. It just shows how much space you’ve made to notice God today.</small>
+      </aside>
+    </section>
+
+    <section class="toolbar">
+      <div class="tabs" id="tabs"></div>
+      <div class="tools">
+        <input type="date" id="date" />
+        <button id="todayBtn">Today</button>
+        <button id="resetBtn">Reset</button>
+        <button id="themeBtn" class="primary">Dark mode</button>
+      </div>
+    </section>
+
+    <div id="app"></div>
+
+    <footer>
+      <span>Saved locally in this browser.</span>
+      <span>No streaks. No guilt engine. Just daily return.</span>
+    </footer>
+  </main>
+
+  <script>
+    const STORAGE = 'faithhub-rule-of-life-v2';
+    const THEME_STORAGE = 'faithhub-theme';
+    const todayKey = () => new Date().toISOString().slice(0, 10);
+
+    const scriptures = [
+      ['Matthew 11:28–30', 'Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me…', 'Receive rest before you try to improve.'],
+      ['Galatians 5:22–23', 'The fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control.', 'Fruit grows by abiding, not forcing.'],
+      ['Psalm 23:1–3', 'The Lord is my shepherd, I lack nothing. He makes me lie down in green pastures… he refreshes my soul.', 'Let God shepherd your pace today.'],
+      ['Micah 6:8', 'To act justly and to love mercy and to walk humbly with your God.', 'Small faithfulness counts.'],
+      ['John 15:4–5', 'Remain in me, as I also remain in you… apart from me you can do nothing.', 'Start with connection, not effort.'],
+      ['Philippians 4:6–7', 'Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.', 'Bring the anxious thing into God’s presence.']
+    ];
+
+    const fruits = [
+      ['Love', 'Where could I move toward someone with costly kindness today?', 'Pause before reacting. Ask: what would love look like here?'],
+      ['Joy', 'Where did I notice goodness, beauty, or delight?', 'Name one small gift aloud and thank God for it.'],
+      ['Peace', 'What part of me feels hurried, defended, or unsafe?', 'Breathe slowly and unclench your jaw, shoulders, and hands.'],
+      ['Patience', 'Where am I being invited to slow down rather than control?', 'Choose one delay today as a place to practise trust.'],
+      ['Kindness', 'Who needs a gentle word or practical act of care?', 'Do one hidden act of kindness without announcing it.'],
+      ['Goodness', 'Where can I do the right thing even if no one notices?', 'Pick one small faithful action and do it simply.'],
+      ['Faithfulness', 'What is mine to carry today, and what is not?', 'Return to one commitment without harshness or drama.'],
+      ['Gentleness', 'Where do I need to lower the force of my words, tone, or expectations?', 'Speak one sentence softer than you feel like speaking.'],
+      ['Self-control', 'What desire needs wise boundaries rather than shame?', 'Create one small friction point between impulse and action.']
+    ];
+
+    const rhythms = [
+      ['morning', '☀️', 'Morning receiving', 'Start of day', 'Open hands. Ask for grace, not perfection.', 'Father, receive this day. Form Christ in me. Help me walk in love, truth, humility, and courage.'],
+      ['midday', '🌬️', 'Midday reset', 'When scattered', 'One minute to return to your body and God’s presence.', 'Lord Jesus Christ, have mercy on me. I return to You. Show me the next faithful step.'],
+      ['evening', '🌙', 'Evening examen', 'Before bed', 'Notice grace, fear, repentance, gratitude, and rest.', 'Holy Spirit, search me gently. Thank You for grace today. I give You what remains unfinished.'],
+      ['family', '🏠', 'Family prayer', 'Dinner or bedtime', 'Short, warm prayer with the people in your home.', 'Jesus, bless our family. Help our home become a place of peace, kindness, honesty, and love.']
+    ];
+
+    const familyPrompts = [
+      'Thank God for one good thing each person noticed today.',
+      'Pray one sentence of blessing over each child or family member.',
+      'Ask: where did we need help today? Then pray simply about it.',
+      'Read one short Psalm line and let everyone choose one word they liked.',
+      'Practise apology and repair: “I’m sorry for… Please forgive me.”',
+      'Sit quietly for 30 seconds and remember Jesus is near.'
+    ];
+
+    const restIdeas = [
+      'No productivity goal for a set block of time.',
+      'Enjoy creation: walk, garden, sit outside, or watch the sky.',
+      'Shared meal without rushing.',
+      'A nap, quiet reading, or gentle play.',
+      'Put away one device for a chosen window.',
+      'Worship, church, prayer, or a slow Psalm.'
+    ];
+
+    const tabs = [['today', 'Today'], ['prayer', 'Prayer'], ['reflection', 'Reflection'], ['family', 'Family'], ['sabbath', 'Sabbath']];
+    let tab = 'today';
+    let date = todayKey();
+    let theme = localStorage.getItem(THEME_STORAGE) || 'light';
+    let state = loadState();
+
+    function blank(d = date) {
+      return {
+        date: d,
+        rhythms: {},
+        reflection: { gratitude: '', repentance: '', fear: '', grace: '', fruit: '', body: '', prayer: '' },
+        sabbath: { planned: false, rested: false, notes: '' },
+        community: { church: false, checkedIn: false, served: false, notes: '' }
+      };
+    }
+
+    function loadState() {
+      try { return JSON.parse(localStorage.getItem(STORAGE)) || { entries: { [todayKey()]: blank(todayKey()) } }; }
+      catch { return { entries: { [todayKey()]: blank(todayKey()) } }; }
+    }
+
+    function saveState() { localStorage.setItem(STORAGE, JSON.stringify(state)); }
+    function entry() { return state.entries[date] || (state.entries[date] = blank(date)); }
+    function dayIndex() { return Math.abs(Math.floor(new Date(date + 'T00:00:00').getTime() / 86400000)); }
+    function esc(value = '') { return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;'); }
+
+    function applyTheme() {
+      document.body.classList.toggle('dark', theme === 'dark');
+      document.getElementById('themeBtn').textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+      localStorage.setItem(THEME_STORAGE, theme);
+    }
+
+    function setReflection(key, value) { entry().reflection[key] = value; saveState(); render(); }
+    function setNested(section, key, value) { entry()[section][key] = value; saveState(); render(); }
+    function toggleRhythm(id) { entry().rhythms[id] = !entry().rhythms[id]; saveState(); render(); }
+
+    function textarea(key, title, placeholder) {
+      return `<article class="card"><h3>${title}</h3><textarea data-ref="${key}" placeholder="${esc(placeholder)}">${esc(entry().reflection[key])}</textarea></article>`;
+    }
+
+    function check(section, key, title, sub) {
+      const on = entry()[section][key];
+      return `<button class="check ${on ? 'active' : ''}" data-check="${section}:${key}" type="button"><span class="dot">${on ? '✓' : ''}</span><span><strong>${title}</strong><br><small>${sub}</small></span></button>`;
+    }
+
+    function renderTabs() {
+      document.getElementById('tabs').innerHTML = tabs.map(([id, label]) => `<button class="${tab === id ? 'active' : ''}" data-tab="${id}">${label}</button>`).join('');
+    }
+
+    function updateMeter() {
+      const e = entry();
+      const rhythmCount = Object.values(e.rhythms).filter(Boolean).length;
+      const reflectionCount = Object.values(e.reflection).filter(Boolean).length;
+      const progress = Math.min(100, Math.round(((rhythmCount + Math.min(reflectionCount, 3)) / 7) * 100));
+      document.getElementById('meter').style.width = progress + '%';
+    }
+
+    function render() {
+      renderTabs();
+      applyTheme();
+      document.getElementById('date').value = date;
+      updateMeter();
+
+      const e = entry();
+      const scripture = scriptures[dayIndex() % scriptures.length];
+      const fruit = fruits[dayIndex() % fruits.length];
+      const familyPrompt = familyPrompts[dayIndex() % familyPrompts.length];
+      let html = '';
+
+      if (tab === 'today') {
+        html = `<section class="grid"><article class="card"><p class="eyebrow">Daily Scripture</p><h2>${scripture[0]}</h2><blockquote>“${scripture[1]}”</blockquote><p><strong>${scripture[2]}</strong></p></article><article class="card"><p class="eyebrow">Fruit for today</p><h2>${fruit[0]}</h2><p>${fruit[1]}</p><p><strong>Tiny practice:</strong> ${fruit[2]}</p></article><article class="card wide"><p class="eyebrow">Today’s rhythm</p><h2>Small faithful openings</h2><div class="rhythm-grid">${rhythms.map(r => `<button class="rhythm ${e.rhythms[r[0]] ? 'active' : ''}" data-rhythm="${r[0]}"><span class="icon">${r[1]}</span><strong>${r[2]}</strong><br><small>${r[3]}</small><p>${r[4]}</p></button>`).join('')}</div></article></section>`;
+      }
+
+      if (tab === 'prayer') {
+        html = `<section class="grid">${rhythms.map(r => `<article class="card"><span class="icon">${r[1]}</span><h2>${r[2]}</h2><p>${r[3]} — ${r[4]}</p><blockquote>${r[5]}</blockquote><button class="${e.rhythms[r[0]] ? 'active' : ''}" data-rhythm="${r[0]}">${e.rhythms[r[0]] ? 'Received' : 'Mark gently'}</button></article>`).join('')}</section>`;
+      }
+
+      if (tab === 'reflection') {
+        html = `<section class="grid"><article class="card wide"><p class="eyebrow">Evening examen</p><h2>Tell the truth without self-attack.</h2><p>These questions are for noticing, confession, gratitude, and receiving mercy. Leave anything blank.</p></article>${textarea('gratitude', 'What am I grateful for?', 'A gift, kindness, provision, beauty, or small mercy…')}${textarea('repentance', 'Where do I need repentance or repair?', 'Not shame. Just truth, humility, and a next faithful step…')}${textarea('fear', 'Where did I act from fear today?', 'Control, avoidance, defensiveness, people-pleasing, hiding, rushing…')}${textarea('grace', 'Where did I notice grace?', 'A softening, help arriving, restraint, courage, comfort, forgiveness…')}<article class="card"><h3>What fruit is God growing?</h3><select data-ref="fruit"><option value="">Choose gently…</option>${fruits.map(f => `<option ${e.reflection.fruit === f[0] ? 'selected' : ''}>${f[0]}</option>`).join('')}</select></article>${textarea('body', 'What is my body carrying?', 'Tight chest, heavy shoulders, tired eyes, clenched jaw, warmth, calm…')}<article class="card wide"><h3>Prayer to close the day</h3><textarea data-ref="prayer" placeholder="Lord, I give You… Thank You for… Help me tomorrow…">${esc(e.reflection.prayer)}</textarea></article></section>`;
+      }
+
+      if (tab === 'family') {
+        html = `<section class="grid"><article class="card"><p class="eyebrow">Family prayer prompt</p><h2>${familyPrompt}</h2><p>Keep it short enough that the family can actually receive it. One honest sentence can be enough.</p></article><article class="card"><h2>Community rhythms</h2><p>Faith forms in ordinary belonging: worship, meals, serving, reconciliation, and being known.</p>${check('community', 'church', 'Church / gathered worship', 'A rhythm of receiving and belonging.')}${check('community', 'checkedIn', 'Checked in with someone', 'A text, call, prayer, meal, or honest conversation.')}${check('community', 'served', 'Served quietly', 'A small act of love without needing recognition.')}</article><article class="card wide"><h3>Notes on family, church, or community</h3><textarea data-nested="community:notes" placeholder="Who needs care? Where did we experience connection? Is there anyone to forgive, bless, or reach out to?">${esc(e.community.notes)}</textarea></article></section>`;
+      }
+
+      if (tab === 'sabbath') {
+        html = `<section class="grid"><article class="card"><p class="eyebrow">Sabbath / rest</p><h2>Practise being loved without producing.</h2><p>Sabbath is not another productivity system. It is resistance against hurry, control, and the lie that you are only valuable when useful.</p>${check('sabbath', 'planned', 'I made room for rest', 'Even a small protected window counts.')}${check('sabbath', 'rested', 'I actually received some rest', 'Notice what was life-giving, not what was impressive.')}</article><article class="card"><h2>Rest ideas</h2><ul class="rest-list">${restIdeas.map(x => `<li>${x}</li>`).join('')}</ul></article><article class="card wide"><h3>Rest notes</h3><textarea data-nested="sabbath:notes" placeholder="What helped me slow down? What made rest hard? What might need to change next Sabbath?">${esc(e.sabbath.notes)}</textarea></article></section>`;
+      }
+
+      document.getElementById('app').innerHTML = html;
+      bindEvents();
+    }
+
+    function bindEvents() {
+      document.querySelectorAll('[data-tab]').forEach(button => button.onclick = () => { tab = button.dataset.tab; render(); });
+      document.querySelectorAll('[data-rhythm]').forEach(button => button.onclick = () => toggleRhythm(button.dataset.rhythm));
+      document.querySelectorAll('[data-ref]').forEach(element => element.oninput = () => setReflection(element.dataset.ref, element.value));
+      document.querySelectorAll('[data-check]').forEach(button => button.onclick = () => { const [section, key] = button.dataset.check.split(':'); setNested(section, key, !entry()[section][key]); });
+      document.querySelectorAll('[data-nested]').forEach(element => element.oninput = () => { const [section, key] = element.dataset.nested.split(':'); setNested(section, key, element.value); });
+    }
+
+    document.getElementById('date').onchange = event => { date = event.target.value; render(); };
+    document.getElementById('todayBtn').onclick = () => { date = todayKey(); render(); };
+    document.getElementById('resetBtn').onclick = () => { state.entries[date] = blank(date); saveState(); render(); };
+    document.getElementById('themeBtn').onclick = () => { theme = theme === 'dark' ? 'light' : 'dark'; applyTheme(); };
+
+    render();
+  </script>
+</body>
+</html>
