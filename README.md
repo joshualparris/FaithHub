@@ -1,4 +1,4 @@
-# FaithHub
+# Rule of Life Companion
 
 A gentle, non-performance-based spiritual formation app for daily Scripture, prayer rhythms, fruits of the Spirit reflection, repentance/gratitude, family prayer prompts, community rhythms, and Sabbath/rest tracking.
 
@@ -18,16 +18,31 @@ npm run preview
 
 ## Deploy to GitHub Pages
 
-This repository includes a GitHub Actions workflow at `.github/workflows/deploy.yml`.
+1. Create a new GitHub repository, for example `rule-of-life-companion`.
+2. Unzip this project and open a terminal in the project folder.
+3. Run:
 
-After pushing to `main`, go to **Settings → Pages** and set **Build and deployment → Source** to **GitHub Actions**.
-
-The app should deploy to:
-
-```text
-https://joshualparris.github.io/FaithHub/
+```bash
+git init
+git add .
+git commit -m "Initial Rule of Life Companion app"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/rule-of-life-companion.git
+git push -u origin main
 ```
 
-## Design posture
+4. In GitHub, go to **Settings → Pages**.
+5. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+6. Open the **Actions** tab and wait for `Deploy to GitHub Pages` to finish.
 
-This is intentionally not a streak-based devotional app. It is a gentle Rule of Life companion: a place to return, notice grace, confess honestly, pray simply, and practise rest without turning spiritual formation into performance.
+Your site should appear at:
+
+```text
+https://YOUR_USERNAME.github.io/rule-of-life-companion/
+```
+
+## Notes
+
+- Entries are saved in local browser storage only.
+- There are no streaks or scores.
+- The progress bar is intentionally framed as “space made to notice God”, not spiritual performance.
