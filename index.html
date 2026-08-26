@@ -129,7 +129,7 @@
       gap: 8px;
     }
 
-    button, input, select, textarea {
+    button, input, select, textarea, .study-link {
       font: inherit;
       border: 2px solid var(--border);
       background: var(--button-bg);
@@ -139,6 +139,15 @@
     }
 
     button { cursor: pointer; }
+
+    .study-link {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 800;
+      background: var(--active-bg);
+      color: var(--active-fg);
+    }
 
     button.active, button.primary {
       background: var(--active-bg);
@@ -223,7 +232,8 @@
     @media (max-width: 520px) {
       main { width: min(100% - 18px, 1080px); padding-top: 16px; }
       .rhythm-grid { grid-template-columns: 1fr; }
-      button, input { width: 100%; }
+      button, input, .study-link { width: 100%; }
+      .study-link { justify-content: center; }
     }
   </style>
 </head>
@@ -246,6 +256,7 @@
     <section class="toolbar">
       <div class="tabs" id="tabs"></div>
       <div class="tools">
+        <a class="study-link" href="ab401a-genesis.html">Study AB401A · Genesis</a>
         <input type="date" id="date" />
         <button id="todayBtn">Today</button>
         <button id="resetBtn">Reset</button>
