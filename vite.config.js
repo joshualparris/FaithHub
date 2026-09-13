@@ -7,7 +7,7 @@ const podcastDock = {
     return [{
       tag: 'script',
       attrs: {
-        src: 'https://cdn.jsdelivr.net/gh/joshualparris/JoshHub@7b6ec3907b27924dbe1d64c9ece4e439e6de8de7/public/podcast-dock.js',
+        src: 'https://cdn.jsdelivr.net/gh/joshualparris/JoshHub@main/public/podcast-dock.js',
         'data-topics': 'faith',
         'data-label': '🎧 Listen to a different faith podcast',
         'data-quiet-selectors': "[data-prayer-mode='true'],.prayer-mode,.reflection-mode",
