@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FaithHub — Podcasts</title>
+  <style>
+    :root{color-scheme:light dark;--bg:#000;--fg:#fff;--muted:#cfcfcf;--card:#0b0b0b;--border:#fff}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+    main{width:min(980px,calc(100% - 24px));margin:0 auto;padding:24px 0 56px}
+    header{border:2px solid var(--border);border-radius:24px;padding:20px;margin-bottom:18px}
+    h1{margin:0 0 8px;font-size:clamp(2.1rem,8vw,4.5rem);line-height:.95;letter-spacing:-.05em} p{margin:0;color:var(--muted)}
+    .top{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--border);border-radius:14px;padding:10px 14px;color:var(--fg);text-decoration:none;font-weight:800;background:transparent}
+    .search{width:100%;margin:0 0 16px;padding:13px 15px;border:2px solid var(--border);border-radius:14px;background:transparent;color:var(--fg);font:inherit}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{border:2px solid var(--border);border-radius:20px;padding:16px;background:var(--card)}
+    .card h2{margin:0 0 6px;font-size:1.15rem;line-height:1.2}.meta{font-size:.92rem;color:var(--muted);margin-bottom:12px}.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.tag{border:1px solid #666;border-radius:999px;padding:3px 8px;font-size:.78rem;color:var(--muted)}
+    .listen{display:inline-flex;width:100%;align-items:center;justify-content:center;background:#fff;color:#000;border-radius:12px;padding:11px 12px;font-weight:900;text-decoration:none}.empty{display:none;border:2px solid var(--border);border-radius:18px;padding:18px}
+    @media(max-width:700px){.grid{grid-template-columns:1fr} main{width:min(100% - 18px,980px);padding-top:14px}.btn{width:100%}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p style="font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">FaithHub</p>
+    <h1>🎧 Faith podcasts</h1>
+    <p>Prayer, Scripture, Sabbath, discipleship, family and spiritual formation. Tap any episode to listen in Spotify.</p>
+    <div class="top"><a class="btn" href="./">← Back to FaithHub</a></div>
+  </header>
+  <input id="search" class="search" type="search" placeholder="Search podcasts, shows or topics…" aria-label="Search faith podcasts" />
+  <section id="grid" class="grid"></section>
+  <div id="empty" class="empty">No podcasts match that search.</div>
+</main>
+<script>
+const episodes = [
+['73voyV4WuXvPvP45S9cjH4','Remember the Sabbath','BibleProject',['sabbath','bible'],'52 min'],
+['1ncaSOwNa3FXWfTr0mCxW6','Be Family Around a Table','Practicing the Way',['community','formation'],'56 min'],
+['1GzCbF3gDRcLQS6lklE9MT','John Mark Comer on Spiritual Formation','That Sounds Fun',['formation','discipleship'],'59 min'],
+['4JZ7s2SHyxMU7IAZZBxpNF','No Accidental Saints: Spiritual Formation','The Intentional Parents Podcast',['formation','parenting'],'1 h 21'],
+['0V6KWGhJ2f6XOh9mzSmLDM','When God Seems Distant','Think Biblically',['spiritual-growth','bible'],'43 min'],
+['7frii3CB4Hily2vF6UdRWq','How Did the Fig Tree Wither So Quickly?','Practicing the Way',['fruitfulness','formation'],'38 min'],
+['29yW4Ds8vnn0jaSbIQe9ZV','What Does It Mean To Be Human?','Practicing the Way',['vocation','formation'],'44 min'],
+['4VXwLxTYUU6l4B3tmYY2hy','Jesus on Becoming a Non-Anxious Presence','Practicing the Way',['anxiety','jesus'],'52 min'],
+['7mSMDJhQRGlu2mesO3h0AK','Three Shifts of Discipleship','Practicing the Way',['discipleship','hope','love'],'18 min'],
+['6SvYHTIyzpXLpP1AqgsKnm','Spiritual Formation & Motherhood','The Intentional Parents Podcast',['formation','parenting'],'44 min'],
+['6j4UuPCHNLVI2hwVfzV4Vg','How Does Jesus Teach Us to Pray?','BibleProject',['prayer','bible'],'59 min'],
+['3bbPnwWfBVZaiSYGEXipBs','A Conversation with Ronald Rolheiser and John Mark Comer','The Contemplative Pastor',['discipleship','formation'],'1 h 22'],
+['5XlSmTWMjdGj3CN9WDpban','Ronald Rolheiser on Giving Your Life Away','Practicing the Way',['discipleship','service'],'1 h 15'],
+['4vk651hpycoLUhy4A0nodg','John Mark Comer on Modern Discipleship','Carey Nieuwhof Leadership Podcast',['discipleship','church'],'1 h 36'],
+['6IHWKixejO8FGpqpJmyGxE','Lord of the Sabbath','BibleProject',['sabbath','bible'],'1 h 10'],
+['35NcKUKpbsblsqgJX27VOR','The Cathedral in Time','BibleProject',['sabbath','rest'],'57 min'],
+['56zHb0zSGa36fbGhWrVBBh','Prayer and Spiritual Formation','For the Beauty',['prayer','formation'],'1 h 19'],
+['7cBeWxkVxDXSaeDsMw4abF','Faith, Sabbath and Christian Hope','Ask NT Wright Anything',['faith','sabbath'],'24 min'],
+['2cMUg5Oc1o4PO7L1nRLGT2','Is the Sabbath Still Relevant for Christians?','The Crossway Podcast',['sabbath','rest'],'34 min'],
+['6BhYHj89g7Q0OQ5phIOGWe','Does God Lead Us Into Temptation?','BibleProject',['prayer','bible'],'57 min'],
+['67UrQwtlzo9raLOCiuhSIb','How Do We Pray? The Theology of Prayer','Back Porch Theology',['prayer','theology'],'1 h 12'],
+['2RevSI2XkQd1Z2FAmuwYAE','Intro to BibleProject Podcast','BibleProject',['bible','introduction'],''],
+['51efUzkqvIdnBUFJzn8xKw',"Sabbath Isn't Just a Day Off",'The Christian Clinician',['sabbath','rest'],'25 min'],
+['47uCd08HL8Aa8hO8PM6UGt','Contemplative Prayer','Hearing Jesus',['prayer','contemplation'],'25 min'],
+['1pQo6Aehk5wfYOAxqNOrMi','The Role of the Bible','Sabbath School with Dwain Esmond',['bible','formation'],'24 min']
+];
+const grid=document.getElementById('grid'), empty=document.getElementById('empty'), search=document.getElementById('search');
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){const q=search.value.trim().toLowerCase();const rows=episodes.filter(e=>[e[1],e[2],...e[3]].join(' ').toLowerCase().includes(q));grid.innerHTML=rows.map(e=>`<article class="card"><h2>${esc(e[1])}</h2><div class="meta">${esc(e[2])}${e[4]?' · '+esc(e[4]):''}</div><div class="tags">${e[3].map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div><a class="listen" href="https://open.spotify.com/episode/${encodeURIComponent(e[0])}" target="_blank" rel="noopener noreferrer">▶ Listen on Spotify</a></article>`).join('');empty.style.display=rows.length?'none':'block'}
+search.addEventListener('input',render);render();
+</script>
+</body>
+</html>
