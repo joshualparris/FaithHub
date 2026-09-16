@@ -5,17 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FaithHub — Podcasts</title>
   <style>
-    :root{color-scheme:light dark;--bg:#000;--fg:#fff;--muted:#cfcfcf;--card:#0b0b0b;--border:#fff}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
-    main{width:min(980px,calc(100% - 24px));margin:0 auto;padding:24px 0 56px}
-    header{border:2px solid var(--border);border-radius:24px;padding:20px;margin-bottom:18px}
-    h1{margin:0 0 8px;font-size:clamp(2.1rem,8vw,4.5rem);line-height:.95;letter-spacing:-.05em} p{margin:0;color:var(--muted)}
-    .top{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--border);border-radius:14px;padding:10px 14px;color:var(--fg);text-decoration:none;font-weight:800;background:transparent}
+    :root{color-scheme:light dark;--bg:#000;--fg:#fff;--muted:#cfcfcf;--card:#0b0b0b;--border:#fff;--accent:#fff;--accent-fg:#000}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+    main{width:min(980px,calc(100% - 24px));margin:0 auto;padding:24px 0 70px}
+    header,.player{border:2px solid var(--border);border-radius:24px;padding:20px;margin-bottom:18px;background:var(--card)}
+    h1{margin:0 0 8px;font-size:clamp(2.1rem,8vw,4.5rem);line-height:.95;letter-spacing:-.05em}
+    h2,h3,p{margin-top:0}
+    p{color:var(--muted)}
+    .top,.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .btn,.play-btn,.open-link{display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--border);border-radius:14px;padding:10px 14px;color:var(--fg);text-decoration:none;font-weight:800;background:transparent;cursor:pointer;font:inherit}
+    .primary{background:var(--accent);color:var(--accent-fg)}
+    .player-kicker{font-size:.78rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+    .player-title{font-size:clamp(1.35rem,4vw,2rem);margin-bottom:6px}
+    .player-meta{font-size:.92rem;color:var(--muted);margin-bottom:14px}
+    iframe{display:block;width:100%;height:152px;border:0;border-radius:14px;background:#111}
     .search{width:100%;margin:0 0 16px;padding:13px 15px;border:2px solid var(--border);border-radius:14px;background:transparent;color:var(--fg);font:inherit}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{border:2px solid var(--border);border-radius:20px;padding:16px;background:var(--card)}
-    .card h2{margin:0 0 6px;font-size:1.15rem;line-height:1.2}.meta{font-size:.92rem;color:var(--muted);margin-bottom:12px}.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.tag{border:1px solid #666;border-radius:999px;padding:3px 8px;font-size:.78rem;color:var(--muted)}
-    .listen{display:inline-flex;width:100%;align-items:center;justify-content:center;background:#fff;color:#000;border-radius:12px;padding:11px 12px;font-weight:900;text-decoration:none}.empty{display:none;border:2px solid var(--border);border-radius:18px;padding:18px}
-    @media(max-width:700px){.grid{grid-template-columns:1fr} main{width:min(100% - 18px,980px);padding-top:14px}.btn{width:100%}}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .card{border:2px solid var(--border);border-radius:20px;padding:16px;background:var(--card)}
+    .card.playing{outline:3px solid #888;outline-offset:3px}
+    .card h2{margin:0 0 6px;font-size:1.15rem;line-height:1.2}
+    .meta{font-size:.92rem;color:var(--muted);margin-bottom:12px}
+    .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+    .tag{border:1px solid #666;border-radius:999px;padding:3px 8px;font-size:.78rem;color:var(--muted)}
+    .card-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .card-actions .play-btn,.card-actions .open-link{flex:1 1 180px}
+    .empty{display:none;border:2px solid var(--border);border-radius:18px;padding:18px}
+    .note{font-size:.82rem;color:var(--muted);margin-top:10px}
+    button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+    @media(max-width:700px){.grid{grid-template-columns:1fr}main{width:min(100% - 18px,980px);padding-top:14px}.btn,.actions>*{width:100%}}
   </style>
 </head>
 <body>
@@ -23,9 +41,22 @@
   <header>
     <p style="font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">FaithHub</p>
     <h1>🎧 Faith podcasts</h1>
-    <p>Prayer, Scripture, Sabbath, discipleship, family and spiritual formation. Tap any episode to listen in Spotify.</p>
+    <p>Prayer, Scripture, Sabbath, discipleship, family and spiritual formation. This player is built directly into FaithHub and does not depend on JoshHub or any shared podcast script.</p>
     <div class="top"><a class="btn" href="./">← Back to FaithHub</a></div>
   </header>
+
+  <section class="player" aria-label="FaithHub podcast player">
+    <div class="player-kicker">Now selected</div>
+    <h2 id="playerTitle" class="player-title">Choose a podcast</h2>
+    <div id="playerMeta" class="player-meta">FaithHub keeps the episode catalogue locally in this page.</div>
+    <iframe id="playerFrame" title="Spotify podcast player" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    <div class="actions">
+      <button id="randomBtn" class="play-btn primary" type="button">🎲 Different podcast</button>
+      <a id="spotifyLink" class="open-link" href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer">Open in Spotify ↗</a>
+    </div>
+    <p class="note">Spotify will only start playback after you press play.</p>
+  </section>
+
   <input id="search" class="search" type="search" placeholder="Search podcasts, shows or topics…" aria-label="Search faith podcasts" />
   <section id="grid" class="grid"></section>
   <div id="empty" class="empty">No podcasts match that search.</div>
@@ -58,10 +89,51 @@ const episodes = [
 ['47uCd08HL8Aa8hO8PM6UGt','Contemplative Prayer','Hearing Jesus',['prayer','contemplation'],'25 min'],
 ['1pQo6Aehk5wfYOAxqNOrMi','The Role of the Bible','Sabbath School with Dwain Esmond',['bible','formation'],'24 min']
 ];
-const grid=document.getElementById('grid'), empty=document.getElementById('empty'), search=document.getElementById('search');
+
+const STORAGE='faithhub-local-podcast-v1';
+const grid=document.getElementById('grid');
+const empty=document.getElementById('empty');
+const search=document.getElementById('search');
+const playerTitle=document.getElementById('playerTitle');
+const playerMeta=document.getElementById('playerMeta');
+const playerFrame=document.getElementById('playerFrame');
+const spotifyLink=document.getElementById('spotifyLink');
+const randomBtn=document.getElementById('randomBtn');
+let current=loadCurrent();
+
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function render(){const q=search.value.trim().toLowerCase();const rows=episodes.filter(e=>[e[1],e[2],...e[3]].join(' ').toLowerCase().includes(q));grid.innerHTML=rows.map(e=>`<article class="card"><h2>${esc(e[1])}</h2><div class="meta">${esc(e[2])}${e[4]?' · '+esc(e[4]):''}</div><div class="tags">${e[3].map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div><a class="listen" href="https://open.spotify.com/episode/${encodeURIComponent(e[0])}" target="_blank" rel="noopener noreferrer">▶ Listen on Spotify</a></article>`).join('');empty.style.display=rows.length?'none':'block'}
-search.addEventListener('input',render);render();
+function loadCurrent(){try{const n=Number(localStorage.getItem(STORAGE));return Number.isInteger(n)&&n>=0&&n<episodes.length?n:0}catch{return 0}}
+function saveCurrent(){try{localStorage.setItem(STORAGE,String(current))}catch{}}
+function spotifyUrl(e){return `https://open.spotify.com/episode/${encodeURIComponent(e[0])}`}
+function embedUrl(e){return `https://open.spotify.com/embed/episode/${encodeURIComponent(e[0])}?theme=0`}
+function play(index,{scroll=true}={}){
+  current=index;
+  saveCurrent();
+  const e=episodes[current];
+  playerTitle.textContent=e[1];
+  playerMeta.textContent=`${e[2]}${e[4]?' · '+e[4]:''} · ${e[3].join(' · ')}`;
+  playerFrame.src=embedUrl(e);
+  spotifyLink.href=spotifyUrl(e);
+  render();
+  if(scroll)document.querySelector('.player').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function pickDifferent(){
+  if(episodes.length<2)return current;
+  let next=current;
+  while(next===current)next=Math.floor(Math.random()*episodes.length);
+  return next;
+}
+function render(){
+  const q=search.value.trim().toLowerCase();
+  const rows=episodes.map((e,i)=>({e,i})).filter(({e})=>[e[1],e[2],...e[3]].join(' ').toLowerCase().includes(q));
+  grid.innerHTML=rows.map(({e,i})=>`<article class="card ${i===current?'playing':''}"><h2>${esc(e[1])}</h2><div class="meta">${esc(e[2])}${e[4]?' · '+esc(e[4]):''}</div><div class="tags">${e[3].map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div><div class="card-actions"><button class="play-btn primary" type="button" data-play="${i}">▶ Play here</button><a class="open-link" href="${spotifyUrl(e)}" target="_blank" rel="noopener noreferrer">Spotify ↗</a></div></article>`).join('');
+  empty.style.display=rows.length?'none':'block';
+}
+
+grid.addEventListener('click',event=>{const button=event.target.closest('[data-play]');if(button)play(Number(button.dataset.play))});
+search.addEventListener('input',render);
+randomBtn.addEventListener('click',()=>play(pickDifferent()));
+play(current,{scroll:false});
 </script>
 </body>
 </html>
