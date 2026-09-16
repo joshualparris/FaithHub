@@ -23,12 +23,38 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Prepare static site with podcast launcher
+        shell: bash
+        run: |
+          mkdir -p _site
+          rsync -a --exclude='.git' --exclude='_site' ./ _site/
+          python - <<'PY'
+          from pathlib import Path
+
+          snippet = '''\n  <script\n    src="https://cdn.jsdelivr.net/gh/joshualparris/JoshHub@ebb0d17495c92d3ce09df1fd1bdb5d4c2056914d/public/podcast-launcher-v3.js"\n    data-topics="faith"\n    data-label="🎧 Listen to a different faith podcast"\n    data-launcher-label="🎧 Podcasts"\n    data-quiet-selectors="[data-prayer-mode='true'],.prayer-mode,.reflection-mode"\n    defer\n  ></script>\n'''
+
+          for path in Path('_site').glob('*.html'):
+              html = path.read_text(encoding='utf-8')
+              if 'podcast-launcher-v3.js' in html:
+                  continue
+              if '</body>' not in html:
+                  raise SystemExit(f'{path} has no </body> tag')
+              path.write_text(html.replace('</body>', snippet + '</body>', 1), encoding='utf-8')
+              print(f'Injected podcast launcher into {path}')
+          PY
+
+          grep -q 'podcast-launcher-v3.js' _site/index.html
+          grep -q 'data-launcher-label="🎧 Podcasts"' _site/index.html
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
+
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
