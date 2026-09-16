@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare static site with podcast launcher
+      - name: Prepare static site with native podcast button
         shell: bash
         run: |
           mkdir -p _site
@@ -32,20 +32,24 @@ jobs:
           python - <<'PY'
           from pathlib import Path
 
-          snippet = '''\n  <script\n    src="https://cdn.jsdelivr.net/gh/joshualparris/JoshHub@ebb0d17495c92d3ce09df1fd1bdb5d4c2056914d/public/podcast-launcher-v3.js"\n    data-topics="faith"\n    data-label="🎧 Listen to a different faith podcast"\n    data-launcher-label="🎧 Podcasts"\n    data-quiet-selectors="[data-prayer-mode='true'],.prayer-mode,.reflection-mode"\n    defer\n  ></script>\n'''
+          button = '''\n  <style id="faithhub-podcast-button-style">\n    #faithhub-podcast-button{position:fixed;z-index:2147483000;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);display:inline-flex;align-items:center;justify-content:center;min-width:172px;max-width:calc(100vw - 24px);padding:13px 20px;border:2px solid #fff;border-radius:999px;background:#111827;color:#fff;text-decoration:none;font:800 15px/1.2 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;box-shadow:0 12px 34px rgba(0,0,0,.55)}\n    #faithhub-podcast-button:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}\n    @media(max-width:520px){#faithhub-podcast-button{bottom:max(12px,env(safe-area-inset-bottom));width:auto}}\n  </style>\n  <a id="faithhub-podcast-button" href="./podcasts.html" aria-label="Open FaithHub podcasts">🎧 Podcasts</a>\n'''
 
           for path in Path('_site').glob('*.html'):
+              if path.name == 'podcasts.html':
+                  continue
               html = path.read_text(encoding='utf-8')
-              if 'podcast-launcher-v3.js' in html:
+              if 'faithhub-podcast-button' in html:
                   continue
               if '</body>' not in html:
                   raise SystemExit(f'{path} has no </body> tag')
-              path.write_text(html.replace('</body>', snippet + '</body>', 1), encoding='utf-8')
-              print(f'Injected podcast launcher into {path}')
+              path.write_text(html.replace('</body>', button + '</body>', 1), encoding='utf-8')
+              print(f'Injected native podcast button into {path}')
           PY
 
-          grep -q 'podcast-launcher-v3.js' _site/index.html
-          grep -q 'data-launcher-label="🎧 Podcasts"' _site/index.html
+          test -f _site/podcasts.html
+          grep -q 'id="faithhub-podcast-button"' _site/index.html
+          grep -q 'href="./podcasts.html"' _site/index.html
+          grep -q 'Faith podcasts' _site/podcasts.html
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
